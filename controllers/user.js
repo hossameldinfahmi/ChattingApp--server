@@ -3,8 +3,6 @@ const User = require("../models/user");
 const genetrateToken = require("../config/generateToken");
 
 const registerUser = asyncHandler(async (req, res) => {
-  console.log(req.body);
-
   const { name, email, password, pic } = req.body;
   if (!name || !email || !password) {
     res.status(400);
@@ -24,7 +22,14 @@ const registerUser = asyncHandler(async (req, res) => {
     pic: pic,
   });
   if (user) {
-    res.status(200).json({ name, email, pic, toke: genetrateToken(user._id) });
+    res.status(201).json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin,
+      pic: user.pic,
+      token: genetrateToken(user._id),
+    });
   } else {
     res.status(400);
     throw new Error("Something went wrong, Faild to freate user");
@@ -41,8 +46,10 @@ const authUser = asyncHandler(async (req, res) => {
     const user = await User.findOne({ email: email });
     if (user && (await user.matchPassword(password))) {
       res.status(200).json({
+        _id: user._id,
         name: user.name,
         email: user.email,
+        isAdmin: user.isAdmin,
         pic: user.pic,
         token: genetrateToken(user._id),
       });
