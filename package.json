@@ -4,10 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon .",
+      "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build":"npm i"
-
+    "build": "npm i"
   },
   "author": "Hossam Fahmy",
   "license": "ISC",
@@ -22,5 +21,8 @@
     "mongodb": "^5.3.0",
     "mongoose": "^7.1.0",
     "socket.io": "^4.6.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
   }
 }
