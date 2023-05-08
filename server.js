@@ -16,7 +16,7 @@ connectDB();
 
 app.use(
   cors({
-    origin: "http://localhost:3001",
+    origin: "https://topson-messenger.onrender.com",
   })
 );
 app.use(express.json());
@@ -50,7 +50,7 @@ const server = app.listen(PORT, () => {
 
 const io = require("socket.io")(server, {
   cors: {
-    origin: "http://localhost:3001",
+    origin: "https://topson-messenger.onrender.com",
     // methods: ["GET", "POST"],
     // allowedHeaders: ["my-custom-header"],
     // credentials: true,
