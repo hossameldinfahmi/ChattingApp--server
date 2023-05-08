@@ -16,7 +16,7 @@ connectDB();
 
 app.use(
   cors({
-    origin: "https://topson-messenger.onrender.com",
+    origin: "https://topsonmessages.netlify.app",
   })
 );
 app.use(express.json());
@@ -28,17 +28,7 @@ app.use("/api/message", messageRoutes);
 app.get("/", (req, res) => {
   res.send("Api Running...");
 });
-// // Doply
-// const __dirname1 = path.resolve();
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static(path.join(__dirname1, "../client/build")));
-//   console.log(__dirname1);
-//   app.get("*", (req, res) => {
-//     res.sendFile(path.resolve(__dirname1, "client/build", "index.html"));
-//   });
-// } else {
 
-// }
 const PORT = process.env.PORT || 3000;
 
 app.use(notFound);
@@ -50,7 +40,7 @@ const server = app.listen(PORT, () => {
 
 const io = require("socket.io")(server, {
   cors: {
-    origin: "https://topson-messenger.onrender.com",
+    origin: "https://topsonmessages.netlify.app",
     // methods: ["GET", "POST"],
     // allowedHeaders: ["my-custom-header"],
     // credentials: true,
