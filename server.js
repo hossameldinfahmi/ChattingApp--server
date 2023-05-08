@@ -25,19 +25,20 @@ app.use("/api/user", userRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/api/message", messageRoutes);
 
-// Doply
-const __dirname1 = path.resolve();
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname1, "../client/build")));
-  console.log(__dirname1);
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname1, "client/build", "index.html"));
-  });
-} else {
-  app.get("/", (req, res) => {
-    res.send("Api Running...");
-  });
-}
+app.get("/", (req, res) => {
+  res.send("Api Running...");
+});
+// // Doply
+// const __dirname1 = path.resolve();
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static(path.join(__dirname1, "../client/build")));
+//   console.log(__dirname1);
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.resolve(__dirname1, "client/build", "index.html"));
+//   });
+// } else {
+
+// }
 const PORT = process.env.PORT || 3000;
 
 app.use(notFound);
