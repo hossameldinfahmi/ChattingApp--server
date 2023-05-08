@@ -10,13 +10,18 @@ const chatRoutes = require("./routes/chat");
 const messageRoutes = require("./routes/message");
 const path = require("path");
 
+const allowedOrigins = [
+  "http://localhost:3001",
+  "https://topsonmessages.netlify.app",
+];
+
 const app = express();
 dotenv.config();
 connectDB();
 
 app.use(
   cors({
-    origin: "https://topsonmessages.netlify.app",
+    origin: allowedOrigins,
   })
 );
 app.use(express.json());
@@ -40,7 +45,7 @@ const server = app.listen(PORT, () => {
 
 const io = require("socket.io")(server, {
   cors: {
-    origin: "https://topsonmessages.netlify.app",
+    origin: allowedOrigins,
     // methods: ["GET", "POST"],
     // allowedHeaders: ["my-custom-header"],
     // credentials: true,
